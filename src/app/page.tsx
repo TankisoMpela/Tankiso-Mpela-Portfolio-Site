@@ -52,12 +52,12 @@ const webAppProjects: Project[] = [
     githubLink: 'https://github.com/TankisoMpela/DrifterStudio',
   },
   {
-    id: 'product-image-studio',
-    title: 'Product Image Studio',
-    description: 'I created this interactive design tool because I wanted a faster way to turn raw screenshots into stunning product mockups. It lets you compose beautiful scenes on the fly, entirely in the browser.',
-    image: '',
-    previewLink: 'https://product-image-studio.vercel.app',
-    githubLink: 'https://github.com/TankisoMpela/product-image-studio',
+    id: 'b2b-outreach',
+    title: 'B2B Client Outreach Email Template',
+    description: 'A clean, highly readable, responsive B2B email template designed to solve client acquisition and outreach problems. Engineered using table-based structures for robust cross-client rendering (Gmail, Outlook, Apple Mail), featuring key B2B value-proposition blocks and a prominent call-to-action button.',
+    image: '/placeholders/b2b-outreach.png',
+    previewLink: 'https://timely-mochi-f1d467.netlify.app/',
+    githubLink: 'https://github.com/TankisoMpela/email-portfolio',
   },
   {
     id: 'tweetfeed-react',
