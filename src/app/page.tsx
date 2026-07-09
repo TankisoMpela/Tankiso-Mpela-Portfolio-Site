@@ -171,7 +171,7 @@ export default function Portfolio() {
             </p>
 
             {/* Tech Stack Buttons */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 max-w-4xl">
               {techStack.map((tech) => (
                 <span 
                   key={tech} 
