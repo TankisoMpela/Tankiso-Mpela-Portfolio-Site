@@ -33,7 +33,7 @@ const webAppProjects: Project[] = [
     description: 'A dynamic web application that generates professional, tailored CVs. It features a step-by-step form for entering details and exports beautifully structured, print-ready PDF resumes.',
     image: '/placeholders/cv-generator.png',
     previewLink: 'https://paballo-cv.vercel.app',
-    githubLink: 'https://github.com/TankisoMpela/paballo-cv',
+    githubLink: 'https://github.com/TankisoMpela/CV-Generator-Web-App',
   },
   {
     id: 'admin-dashboard',
