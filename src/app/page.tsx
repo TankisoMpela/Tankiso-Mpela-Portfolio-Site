@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 type Version = {
   label: string;
@@ -218,6 +218,45 @@ const Modal = ({ project, onClose }: { project: Project; onClose: () => void }) 
   </div>
 );
 
+const VideoCard = ({ video }: { video: { id: string; title: string; src: string } }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    const handleChange = () => {
+      if (!document.fullscreenElement) {
+        vid.pause();
+      }
+    };
+    document.addEventListener('fullscreenchange', handleChange);
+    return () => document.removeEventListener('fullscreenchange', handleChange);
+  }, []);
+
+  return (
+    <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+      <div className="relative group cursor-pointer" onClick={() => videoRef.current?.requestFullscreen()}>
+        <video
+          ref={videoRef}
+          src={video.src}
+          controls
+          preload="metadata"
+          playsInline
+          className="w-full max-h-[600px] object-contain bg-black"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <svg className="w-16 h-16 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 3.75v16.5h16.5V3.75H3.75zM15 12l-6 3.75V8.25L15 12z" />
+          </svg>
+        </div>
+      </div>
+      <div className="p-5">
+        <h3 className="font-bold text-lg text-gray-900">{video.title}</h3>
+      </div>
+    </div>
+  );
+};
+
 const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => void }) => (
   <div
     className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col cursor-pointer"
@@ -330,28 +369,7 @@ export default function Portfolio() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {marketingVideos.map((video) => (
-              <div key={video.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                <div className="relative group cursor-pointer" onClick={(e) => {
-                  const vid = e.currentTarget.querySelector('video');
-                  if (vid) vid.requestFullscreen();
-                }}>
-                  <video
-                    src={video.src}
-                    controls
-                    preload="metadata"
-                    playsInline
-                    className="w-full max-h-[600px] object-contain bg-black"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <svg className="w-16 h-16 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 3.75v16.5h16.5V3.75H3.75zM15 12l-6 3.75V8.25L15 12z" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-lg text-gray-900">{video.title}</h3>
-                </div>
-              </div>
+              <VideoCard key={video.id} video={video} />
             ))}
           </div>
         </section>
