@@ -90,10 +90,10 @@ const marketingVideos = [
 ];
 
 const techStack = [
-  'React', 'Next.js', 'Node.js', 'Express', 'MongoDB', 'JavaScript (ES6+)',
-  'Tailwind CSS', 'WordPress', 'PHP', 'HTML5 & CSS3',
-  'Docker', 'Git', 'Linux', 'Java', 'Oracle SQL', 'AI Tooling',
-  'Email Marketing', 'Digital Design'
+  'WordPress', 'E-Commerce', 'Android Apps', 'MongoDB',
+  'Tailwind CSS', 'JavaScript', 'TypeScript', 'HTML5 & CSS3',
+  'Email Marketing', 'Digital Design', 'UI Design', 'Mobile Apps',
+  'Web Development', 'API Integration'
 ];
 
 const getTechColor = (tech: string) => {
@@ -379,10 +379,10 @@ const RatesModal = ({ onClose }: { onClose: () => void }) => (
         <div className="mt-8 text-center pt-6 border-t border-gray-200">
           <p className="text-gray-600 text-sm mb-3">Got a project? Send a brief and we'll talk.</p>
           <a
-            href="mailto:tankisompela@commandcode.ai?subject=Freelance%20Project"
+            href="mailto:tankismpela010@gmail.com?subject=Freelance%20Project"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white text-sm font-bold rounded-xl transition-colors shadow-md"
           >
-            tankisompela@commandcode.ai
+            tankismpela010@gmail.com
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
