@@ -90,10 +90,9 @@ const marketingVideos = [
 ];
 
 const techStack = [
-  'WordPress', 'E-Commerce', 'Android Apps', 'MongoDB',
-  'Tailwind CSS', 'JavaScript', 'TypeScript', 'HTML5 & CSS3',
+  'WordPress', 'E-Commerce', 'Android Apps', 'Tailwind CSS',
   'Email Marketing', 'Digital Design', 'UI Design', 'Mobile Apps',
-  'Web Development', 'API Integration'
+  'Web Development'
 ];
 
 const getTechColor = (tech: string) => {
