@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 type Version = {
   label: string;
@@ -257,130 +257,114 @@ const VideoCard = ({ video }: { video: { id: string; title: string; src: string 
   );
 };
 
-type ServiceTier = { name: string; price: string; features: string[]; highlight?: boolean };
+type ServiceTier = { name: string; price: string; features: string[] };
 type ServiceCategory = {
   icon: string;
   title: string;
   description: string;
   tiers: ServiceTier[];
+  note?: string;
 };
 
 const services: ServiceCategory[] = [
   {
-    icon: '🎬',
-    title: 'Marketing Videos',
-    description: 'Professional motion graphics for social media, ads, and product showcases.',
+    icon: '📱',
+    title: 'Mobile Apps',
+    description: 'Cross-platform apps built with React Native or PWA technology.',
+    note: 'Agencies — pay a small first draft fee. If the client approves, we move to full build.',
     tiers: [
-      { name: 'Short Ad (15s)', price: 'R500', features: ['15-second animated video', 'Script & storyboard', 'Stock footage + motion graphics', '1 revision round'] },
-      { name: 'Standard (30s)', price: 'R1,500', features: ['30-second promotional video', 'Script & storyboard', 'Custom animations + stock footage', 'Background music & SFX', '2 revision rounds'], highlight: true },
-      { name: 'Feature (60s)', price: 'R2,500', features: ['60-second deep-dive video', 'Voiceover (ElevenLabs AI)', 'Custom motion graphics', 'Background music & SFX', '3 revision rounds', '9:16 + 16:9 formats'] },
+      { name: 'First Draft', price: 'R1,500', features: ['Wireframes & user flow', 'One interactive prototype screen', 'Branding & color palette', '1 revision round'] },
+      { name: 'Full Build', price: 'R6,000', features: ['Complete multi-screen app', 'Google OAuth authentication', 'Supabase backend & database', 'Push notifications', 'App Store + Play Store ready', '3 revision rounds'] },
     ],
   },
   {
     icon: '🌐',
     title: 'Websites',
-    description: 'Responsive, modern websites built with React, Next.js, and Tailwind CSS.',
+    description: 'Responsive sites and apps built with React, Next.js, and Tailwind CSS.',
+    note: 'Agencies — pay a small first draft fee. If the client approves, we move to full build.',
     tiers: [
-      { name: 'Landing Page', price: 'R3,500', features: ['Single-page responsive site', 'Mobile + desktop layouts', 'Contact form', 'SEO basics', '1 revision round'] },
-      { name: 'Business Site', price: 'R8,000', features: ['Multi-page website (up to 5)', 'Blog or news section', 'Contact form + analytics', 'SEO optimization', 'Performance optimized', '2 revision rounds'], highlight: true },
-      { name: 'Web Application', price: 'R15,000+', features: ['Full-stack React/Next.js app', 'User authentication (Google OAuth)', 'Database + API (Supabase)', 'Admin dashboard', 'Realtime features', '3 revision rounds'] },
+      { name: 'First Draft', price: 'R1,000', features: ['Homepage design mockup', 'One inner page layout', 'Mobile + desktop preview', '1 revision round'] },
+      { name: 'Full Build', price: 'R4,000', features: ['Multi-page responsive site (up to 5 pages)', 'Contact form + analytics', 'SEO optimization', 'Performance optimized', '2 revision rounds'] },
+      { name: 'E-Commerce', price: 'R6,500', features: ['Product catalog (unlimited items)', 'Cart + guest checkout', 'PayPal integration', 'Customer accounts', 'Admin dashboard', '3 revision rounds'] },
     ],
   },
   {
-    icon: '📱',
-    title: 'Mobile Apps',
-    description: 'Cross-platform mobile applications using React Native or PWA technology.',
+    icon: '🎬',
+    title: 'Marketing Videos',
+    description: 'Motion graphics and promotional videos for ads and social media.',
     tiers: [
-      { name: 'MVP', price: 'R8,000', features: ['Core feature set (1–2 screens)', 'User authentication', 'Basic data storage', 'App Store-ready build', '1 revision round'] },
-      { name: 'Production App', price: 'R18,000', features: ['Full feature set (3–6 screens)', 'Google OAuth + email auth', 'Real-time database (Supabase)', 'Push notifications', 'App Store + Play Store', '2 revision rounds'], highlight: true },
-      { name: 'Complex App', price: 'R30,000+', features: ['Multi-module architecture', 'AI/LLM integration', 'Payment processing', 'Advanced animations', 'Admin dashboard', '3 revision rounds'] },
-    ],
-  },
-  {
-    icon: '🛒',
-    title: 'E-Commerce',
-    description: 'Full-featured online stores with payment integration and admin dashboards.',
-    tiers: [
-      { name: 'Basic Store', price: 'R5,000', features: ['Product catalog (up to 50 items)', 'Shopping cart + checkout', 'PayFast or PayPal integration', 'Mobile responsive', '1 revision round'] },
-      { name: 'Storefront', price: 'R12,000', features: ['Product catalog (unlimited)', 'Cart + guest checkout', 'PayPal + cash on delivery', 'Customer accounts', 'Admin dashboard (orders/products/customers)', '2 revision rounds'], highlight: true },
-      { name: 'Marketplace', price: 'R20,000+', features: ['Multi-vendor marketplace', 'Vendor dashboards', 'Commission system', 'Order tracking + shipping', 'Review system', '3 revision rounds'] },
+      { name: 'Single Ad', price: 'R250', features: ['Up to 30-second video ad', 'Script & storyboard', 'Stock footage + motion graphics', '1 revision round'] },
+      { name: 'Full Package', price: 'R500', features: ['Up to 60-second marketing video', 'Script & storyboard', 'Custom animations + stock footage', 'Background music & SFX', 'Voiceover (AI)', '9:16 + 16:9 formats', '3 revision rounds'] },
     ],
   },
 ];
 
 const processSteps = [
-  { step: '1', title: 'Email Me', desc: 'Send a brief — what you need, timeline, and budget.' },
-  { step: '2', title: 'Consultation', desc: 'We hop on a call to align on scope, design, and deliverables.' },
-  { step: '3', title: 'Proposal', desc: 'I send a detailed proposal with timeline, milestones, and price.' },
-  { step: '4', title: 'Build + Revise', desc: 'I build it. You review. We refine until you\'re happy.' },
-  { step: '5', title: 'Launch', desc: 'Deploy, hand over, and I give you a walkthrough of everything.' },
+  { step: '1', title: 'You Email Me', desc: 'Brief on what you need, timeline, budget.' },
+  { step: '2', title: 'We Talk', desc: 'Quick call to align on scope and approach.' },
+  { step: '3', title: 'First Draft', desc: 'You see a working prototype. Client decides.' },
+  { step: '4', title: 'Full Build & Launch', desc: 'Build, revise, deploy. Done.' },
 ];
 
 const RatesModal = ({ onClose }: { onClose: () => void }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
     <div
-      className="relative bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[85vh] overflow-y-auto z-10"
+      className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-y-auto z-10"
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="sticky top-0 bg-white z-10 px-8 py-6 border-b border-gray-200 flex items-center justify-between">
+      <div className="sticky top-0 bg-white/95 backdrop-blur z-10 px-8 py-5 border-b border-gray-200 flex items-center justify-between">
         <div>
-          <h2 className="text-3xl font-extrabold text-gray-900">💼 Freelance Services & Rates</h2>
-          <p className="text-gray-500 mt-1">Based in Bloemfontein, SA. All prices in ZAR. Every project starts with a free consultation.</p>
+          <h2 className="text-2xl font-extrabold text-gray-900">💼 Freelance Rates</h2>
+          <p className="text-sm text-gray-500 mt-0.5">Bloemfontein, SA · All prices in ZAR · Flat agency-friendly rates</p>
         </div>
-        <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 ml-4">
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
-      <div className="p-8 pt-6">
-        {/* Process */}
-        <div className="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">📋 How It Works</h3>
-          <div className="flex flex-wrap gap-3 justify-between">
-            {processSteps.map((s) => (
-              <div key={s.step} className="flex items-center gap-3 bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex-1 min-w-[150px]">
-                <span className="w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center flex-shrink-0">{s.step}</span>
-                <div>
-                  <p className="font-bold text-sm text-gray-900">{s.title}</p>
-                  <p className="text-xs text-gray-500">{s.desc}</p>
-                </div>
+      <div className="p-6">
+        {/* Process — simplified */}
+        <div className="flex items-center justify-center gap-2 mb-10 text-sm">
+          {processSteps.map((s, i) => (
+            <React.Fragment key={s.step}>
+              <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-3 py-2">
+                <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">{s.step}</span>
+                <span className="font-semibold text-gray-800">{s.title}</span>
               </div>
-            ))}
-          </div>
+              {i < processSteps.length - 1 && (
+                <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              )}
+            </React.Fragment>
+          ))}
         </div>
 
-        {/* Service Categories */}
-        <div className="space-y-8">
+        {/* Service Categories — simple two-column cards */}
+        <div className="space-y-6">
           {services.map((cat) => (
-            <div key={cat.title}>
-              <h3 className="text-xl font-extrabold text-gray-900 mb-1">{cat.icon} {cat.title}</h3>
-              <p className="text-sm text-gray-500 mb-4">{cat.description}</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div key={cat.title} className="border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                <h3 className="text-lg font-extrabold text-gray-900">{cat.icon} {cat.title}</h3>
+                <p className="text-sm text-gray-500">{cat.description}</p>
+                {cat.note && (
+                  <p className="text-xs text-blue-600 font-medium mt-1">{cat.note}</p>
+                )}
+              </div>
+              <div className={`grid gap-px bg-gray-200 ${cat.tiers.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                 {cat.tiers.map((tier) => (
-                  <div
-                    key={tier.name}
-                    className={`rounded-xl border-2 p-5 flex flex-col ${
-                      tier.highlight
-                        ? 'border-blue-500 bg-blue-50/30 relative shadow-md'
-                        : 'border-gray-200 hover:border-gray-300 transition-colors'
-                    }`}
-                  >
-                    {tier.highlight && (
-                      <span className="absolute -top-3 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                        Popular
-                      </span>
-                    )}
-                    <p className="font-bold text-lg text-gray-900">{tier.name}</p>
-                    <p className="text-2xl font-black text-blue-600 mt-1 mb-4">{tier.price}</p>
-                    <ul className="space-y-2 flex-1">
+                  <div key={tier.name} className="bg-white p-5 flex flex-col">
+                    <div className="flex items-baseline justify-between mb-3">
+                      <span className="font-bold text-gray-900">{tier.name}</span>
+                      <span className="text-lg font-black text-blue-600">{tier.price}</span>
+                    </div>
+                    <ul className="space-y-1.5">
                       {tier.features.map((f) => (
-                        <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
-                          <svg className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                          </svg>
+                        <li key={f} className="flex items-start gap-1.5 text-xs text-gray-600">
+                          <span className="text-green-500 mt-0.5">✓</span>
                           {f}
                         </li>
                       ))}
@@ -393,14 +377,14 @@ const RatesModal = ({ onClose }: { onClose: () => void }) => (
         </div>
 
         {/* CTA */}
-        <div className="mt-10 text-center border-t border-gray-200 pt-8">
-          <p className="text-gray-600 mb-4">Ready to start? Send me an email with your project brief.</p>
+        <div className="mt-8 text-center pt-6 border-t border-gray-200">
+          <p className="text-gray-600 text-sm mb-3">Got a project? Send a brief and we'll talk.</p>
           <a
-            href="mailto:tankisompela@commandcode.ai?subject=Freelance%20Project%20Inquiry"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white text-base font-bold rounded-xl transition-colors shadow-lg hover:shadow-xl"
+            href="mailto:tankisompela@commandcode.ai?subject=Freelance%20Project"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white text-sm font-bold rounded-xl transition-colors shadow-md"
           >
             tankisompela@commandcode.ai
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </a>
