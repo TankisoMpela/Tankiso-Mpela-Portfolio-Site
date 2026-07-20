@@ -270,8 +270,8 @@ const services: ServiceCategory[] = [
   {
     icon: '📱',
     title: 'Mobile Apps',
-    description: 'Cross-platform apps built with React Native or PWA technology.',
-    note: 'First draft is a functioning demo with backend and Google sign-in. Client sees it, decides to proceed, then we add features and polish.',
+    description: 'Apps built to work on both iPhone and Android.',
+    note: 'The first draft is a functioning app demo with backend and Google sign-in — you see a real working app, then decide if you want to go ahead with the full build.',
     tiers: [
       { name: 'First Draft', price: 'R1,000', features: ['Functioning app demo', 'Backend + database (Supabase)', 'Google sign-in', '1 revision'] },
       { name: 'Full Build', price: 'R6,000', features: ['All features & screens built out', 'Push notifications', 'App Store + Play Store ready', '3 revisions'] },
@@ -280,8 +280,8 @@ const services: ServiceCategory[] = [
   {
     icon: '🌐',
     title: 'Websites',
-    description: 'Responsive sites and apps built with React, Next.js, and Tailwind CSS.',
-    note: 'First draft is a functioning site with backend and Google sign-in. Client sees it, decides to proceed, then we add features and polish.',
+    description: 'Custom-built or WordPress sites, whatever fits your needs.',
+    note: 'The first draft is a functioning site with backend and Google sign-in — you see a real working site, then decide if you want to go ahead with the full build.',
     tiers: [
       { name: 'First Draft', price: 'R1,000', features: ['Functioning site demo', 'Backend + database (Supabase)', 'Google sign-in', '1 revision'] },
       { name: 'Full Build', price: 'R4,000', features: ['All pages & features finished', 'Analytics + SEO', 'Performance optimized', '2 revisions'] },
@@ -316,7 +316,6 @@ const RatesModal = ({ onClose }: { onClose: () => void }) => (
       <div className="sticky top-0 bg-white/95 backdrop-blur z-10 px-8 py-5 border-b border-gray-200 flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-extrabold text-gray-900">💼 Freelance Rates</h2>
-          <p className="text-sm text-gray-500 mt-0.5">Bloemfontein, SA · All prices in ZAR · Flat agency-friendly rates</p>
         </div>
         <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -351,7 +350,7 @@ const RatesModal = ({ onClose }: { onClose: () => void }) => (
                 <h3 className="text-lg font-extrabold text-gray-900">{cat.icon} {cat.title}</h3>
                 <p className="text-sm text-gray-500">{cat.description}</p>
                 {cat.note && (
-                  <p className="text-xs text-blue-600 font-medium mt-1">{cat.note}</p>
+                  <p className="text-sm text-blue-600 font-semibold mt-1">{cat.note}</p>
                 )}
               </div>
               <div className={`grid gap-px bg-gray-200 ${cat.tiers.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
