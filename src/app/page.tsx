@@ -28,22 +28,9 @@ const webDevProjects: Project[] = [
     title: 'Rose City Beauty',
     description: 'Full-featured e-commerce storefront for a beauty brand based in Bloemfontein, South Africa.',
     image: '/placeholders/rose-city.png',
+    previewLink: 'https://rose-city-store.vercel.app/login',
     technologies: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Zustand'],
     about: 'A complete e-commerce platform built for Rose City Beauty, a South African beauty brand. Features include a product catalog with variants, cart and checkout with PayPal + cash-on-delivery payment options, guest checkout, and a full admin dashboard for managing products, orders, customers, and shipping. Priced in ZAR with automatic EUR conversion for PayPal.',
-    hasVersions: true,
-    versions: [
-      {
-        label: 'Next.js + Supabase (PayPal & Google Auth)',
-        url: 'https://rose-city-store.vercel.app/login',
-        image: '/placeholders/rose-city.png',
-      },
-      {
-        label: 'WordPress Version',
-        url: 'https://cheery-frangipane-6837d1.netlify.app/',
-        status: 'In Progress',
-        image: '/placeholders/rose-city.png',
-      },
-    ],
   },
   {
     id: 'mpela-co-companions',
