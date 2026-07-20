@@ -271,21 +271,21 @@ const services: ServiceCategory[] = [
     icon: '📱',
     title: 'Mobile Apps',
     description: 'Cross-platform apps built with React Native or PWA technology.',
-    note: 'Agencies — pay a small first draft fee. If the client approves, we move to full build.',
+    note: 'First draft is a functioning demo with backend and Google sign-in. Client sees it, decides to proceed, then we add features and polish.',
     tiers: [
-      { name: 'First Draft', price: 'R1,500', features: ['Wireframes & user flow', 'One interactive prototype screen', 'Branding & color palette', '1 revision round'] },
-      { name: 'Full Build', price: 'R6,000', features: ['Complete multi-screen app', 'Google OAuth authentication', 'Supabase backend & database', 'Push notifications', 'App Store + Play Store ready', '3 revision rounds'] },
+      { name: 'First Draft', price: 'R1,000', features: ['Functioning app demo', 'Backend + database (Supabase)', 'Google sign-in', '1 revision'] },
+      { name: 'Full Build', price: 'R6,000', features: ['All features & screens built out', 'Push notifications', 'App Store + Play Store ready', '3 revisions'] },
     ],
   },
   {
     icon: '🌐',
     title: 'Websites',
     description: 'Responsive sites and apps built with React, Next.js, and Tailwind CSS.',
-    note: 'Agencies — pay a small first draft fee. If the client approves, we move to full build.',
+    note: 'First draft is a functioning site with backend and Google sign-in. Client sees it, decides to proceed, then we add features and polish.',
     tiers: [
-      { name: 'First Draft', price: 'R1,000', features: ['Homepage design mockup', 'One inner page layout', 'Mobile + desktop preview', '1 revision round'] },
-      { name: 'Full Build', price: 'R4,000', features: ['Multi-page responsive site (up to 5 pages)', 'Contact form + analytics', 'SEO optimization', 'Performance optimized', '2 revision rounds'] },
-      { name: 'E-Commerce', price: 'R6,500', features: ['Product catalog (unlimited items)', 'Cart + guest checkout', 'PayPal integration', 'Customer accounts', 'Admin dashboard', '3 revision rounds'] },
+      { name: 'First Draft', price: 'R1,000', features: ['Functioning site demo', 'Backend + database (Supabase)', 'Google sign-in', '1 revision'] },
+      { name: 'Full Build', price: 'R4,000', features: ['All pages & features finished', 'Analytics + SEO', 'Performance optimized', '2 revisions'] },
+      { name: 'E-Commerce', price: 'R6,500', features: ['Full online store', 'PayPal + credit card payments', 'Customer accounts', 'Admin dashboard', '3 revisions'] },
     ],
   },
   {
@@ -293,8 +293,8 @@ const services: ServiceCategory[] = [
     title: 'Marketing Videos',
     description: 'Motion graphics and promotional videos for ads and social media.',
     tiers: [
-      { name: 'Single Ad', price: 'R250', features: ['Up to 30-second video ad', 'Script & storyboard', 'Stock footage + motion graphics', '1 revision round'] },
-      { name: 'Full Package', price: 'R500', features: ['Up to 60-second marketing video', 'Script & storyboard', 'Custom animations + stock footage', 'Background music & SFX', 'Voiceover (AI)', '9:16 + 16:9 formats', '3 revision rounds'] },
+      { name: 'Single Ad', price: 'R250', features: ['Up to 30 seconds', 'Any format you need', '1 revision'] },
+      { name: '1 Minute Ad + 3 Revisions', price: 'R500', features: ['Up to 60 seconds', 'Any format you need', '3 revisions'] },
     ],
   },
 ];
