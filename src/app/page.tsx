@@ -270,7 +270,7 @@ const services: ServiceCategory[] = [
   {
     icon: '📱',
     title: 'Mobile Apps',
-    description: 'Apps built to work on both iPhone and Android.',
+    description: 'Apps built to work on Android.',
     note: 'The first draft is a functioning app demo with backend and Google sign-in — you see a real working app, then decide if you want to go ahead with the full build.',
     tiers: [
       { name: 'First Draft', price: 'R1,000', features: ['Functioning app demo', 'Backend + database (Supabase)', 'Google sign-in', '1 revision'] },
